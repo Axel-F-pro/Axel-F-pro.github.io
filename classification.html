@@ -4,8 +4,69 @@
     <meta charset="UTF-8">
     <title>Classification - Work in progress</title>
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+            display: block;
+            margin: 20px auto;
+        }
+        .controls {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .color-btn {
+            padding: 8px 12px;
+            margin: 4px;
+            cursor: pointer;
+            border: 1px solid #aaa;
+        }
+    </style>
 </head>
 <body>
     <h1>Classification - Work in progress</h1>
+
+    <div class="controls">
+        <p>Choisir couleur pour placer les points :</p>
+        <button class="color-btn" style="background:red" data-color="red">Rouge</button>
+        <button class="color-btn" style="background:blue" data-color="blue">Bleu</button>
+        <button class="color-btn" style="background:green" data-color="green">Vert</button>
+    </div>
+
+    <canvas id="canvas" width="600" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let currentColor = 'red';
+
+        // Boutons de couleur
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentColor = btn.dataset.color;
+            });
+        });
+
+        // Stocker les points
+        const points = [];
+
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            points.push({x, y, color: currentColor});
+            drawPoint(x, y, currentColor);
+        });
+
+        function drawPoint(x, y, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, 6, 0, Math.PI*2);
+            ctx.fill();
+        }
+
+    </script>
 </body>
 </html>
