@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 40px;
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+}
+
+.section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    margin: 12px 0;
+    background: #eee;
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
